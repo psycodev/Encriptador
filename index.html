@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="index-style.css">
+    <title>Encriptador Psycodev</title>
+</head>
+<body>
+    <header>
+        <h1><span class="colorb">Bienvenidos al encriptador de PsycoDev</span></h1>
+    </header>
+
+    <form>
+        <section class="textField">
+            <fieldset class="caja1">
+                <label for="mensaje">Texto a encriptar</label>
+                <textarea cols="55  " rows="25" id="mensaje" placeholder="Ingrese su texto" required class="textarea"></textarea>
+                <fieldset class="Botones">
+                    <input type="button" value="Encriptar" class="btn" id="Encriptar">
+                    <input type="button" value="Desencriptar" class="btn" id="Desencriptar">
+                </fieldset>
+            </fieldset>
+        
+            <fieldset class="caja2">
+                <label> Texto encriptado</label>
+                <textarea cols="55" rows="25" id="encriptado" placeholder="No se han encontrado textos" class="textarea" disabled required></textarea>
+                <fieldset class="Botones">
+                    <input type="button" value="Copiar" class="btn" id="copiar" onclick="copiarAlPortapapeles()">
+                    <input type="button" value="Limpiar" class="btn" id="limpiar">
+                </fieldset>
+            </fieldset>
+        </section>
+    </form>    
+</body>
+<footer>
+    <p class="copyright">&copy Copyright Psycodev - 2022</p>
+</footer>
+</html>
+
+<script>
+
+    function encriptar (){
+        var  texto = document.querySelector("#mensaje").value
+        var encriptado = texto.replace(/e/gi, "enter").replace(/i/gi, "imes").replace(/a/gi, "ai").replace(/o/gi, "ober").replace(/u/gi, "ufat");
+        document.querySelector("#encriptado").value=encriptado;
+    }
+
+    var btnEncriptar = document.querySelector("#Encriptar");
+     btnEncriptar.onclick = encriptar;  
+
+
+    function desencriptar (){
+        var  texto1 = document.querySelector("#mensaje").value
+        var encriptado = texto1.replace(/enter/gi, "e").replace(/imes/gi, "i").replace(/ai/gi, "a").replace(/ober/gi, "o").replace(/ufat/gi, "u");
+        document.querySelector("#encriptado").value=encriptado;
+    }
+
+    var btnDEncriptar = document.querySelector("#Desencriptar");
+     btnDEncriptar.onclick = desencriptar; 
+
+     function limpiar(){
+        document.querySelector("#mensaje").value=" "
+        document.querySelector("#encriptado").value=" "
+     }
+
+     var btnLimpiar = document.querySelector("#limpiar")
+     btnLimpiar.onclick=limpiar
+
+     function copiarAlPortapapeles() {
+        var texto = document.getElementById('encriptado');
+        texto.select(); 
+        texto.setSelectionRange(0,99999);
+        document.execCommand('copy');
+    }
+   
+
+</script>
