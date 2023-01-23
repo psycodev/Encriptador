@@ -29,7 +29,7 @@
                 <label> Texto encriptado</label>
                 <textarea cols="55" rows="25" id="encriptado" placeholder="No se han encontrado textos" class="textarea" disabled required></textarea>
                 <fieldset class="Botones">
-                    <input type="button" value="Copiar" class="btn" id="copiar" onclick="copiarAlPortapapeles()">
+                    <input type="button" value="Copiar" class="btn" id="copiar">
                     <input type="button" value="Limpiar" class="btn" id="limpiar">
                 </fieldset>
             </fieldset>
@@ -70,12 +70,29 @@
      var btnLimpiar = document.querySelector("#limpiar")
      btnLimpiar.onclick=limpiar
 
-     function copiarAlPortapapeles() {
-        var texto = document.getElementById('encriptado');
-        texto.select(); 
-        texto.setSelectionRange(0,99999);
-        document.execCommand('copy');
-    }
+     async function copiarAlPortapapeles() {
+  try {
+    // Obtener el contenido a copiar
+    var texto = document.getElementById("encriptado").value;
+
+    // Crear un objeto de tipo DataTransfer
+    var clipboard = new ClipboardEvent("").clipboardData || new DataTransfer();
+
+    // Añadir el contenido al objeto
+    clipboard.setData("text/plain", texto);
+
+    // Copiar el contenido al portapapeles
+    await navigator.clipboard.writeText(clipboard.getData("text/plain"));
+
+    // Mostrar un mensaje de éxito al usuario
+    alert("Texto copiado al portapapeles");
+  } catch (err) {
+    console.error("Error al copiar al portapapeles: ", err);
+  }
+}
+
+    var btnCopiar = document.querySelector("#copiar");
+     btnCopiar.onclick = copiarAlPortapapeles; 
    
 
 </script>
