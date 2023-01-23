@@ -27,7 +27,7 @@
         
             <fieldset class="caja2">
                 <label> Texto encriptado</label>
-                <textarea cols="55" rows="25" id="encripta" placeholder="No se han encontrado textos" class="textarea" disabled required></textarea>
+                <textarea cols="55" rows="25" id="encriptado" placeholder="No se han encontrado textos" class="textarea" disabled required></textarea>
                 <fieldset class="Botones">
                     <input type="button" value="Copiar" class="btn" id="copiar" onclick="copiarAlPortapapeles()">
                     <input type="button" value="Limpiar" class="btn" id="limpiar">
@@ -71,7 +71,7 @@
      btnLimpiar.onclick=limpiar
 
      function copiarAlPortapapeles() {
-        var texto = document.getElementById('encripta');
+        var texto = document.getElementById('encriptado');
         texto.select(); 
         texto.setSelectionRange(0,99999);
         document.execCommand('copy');
